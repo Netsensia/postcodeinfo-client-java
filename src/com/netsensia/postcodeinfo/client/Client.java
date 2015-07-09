@@ -1,6 +1,7 @@
 package com.netsensia.postcodeinfo.client;
 
 import java.io.*;
+import java.util.ArrayList;
 
 import org.json.*;
 import org.apache.http.Header;
@@ -119,14 +120,6 @@ public class Client {
 		point.setLongitude(coords.getDouble(1));
 		
 		return point;
-	}
-	
-	public static void main(String args[]) throws IOException {
-		
-		Client client = new Client("", "https://postcodeinfo-staging.dsd.io");
-		Postcode pc = client.lookupPostcode("SW195AL");
-		
-		System.out.println(pc.getLocalAuthority().getName());
 	}
 
 }
