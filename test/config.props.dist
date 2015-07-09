@@ -1,0 +1,4 @@
+#Auth details for Postcode Info service, for JUnit tests
+#Thu Jul 09 17:31:10 BST 2015
+api_key=
+endpoint=https\://postcodeinfo-staging.dsd.io/

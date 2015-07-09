@@ -37,7 +37,7 @@ public class Client {
 		
 		Postcode postcode = new Postcode();
 		
-		String path = endpoint + "/addresses/?postcode=" + postcodeString;
+		String path = endpoint + "/addresses/?postcode=" + postcodeString.replaceAll("\\s+","");
 
 		Header header = new BasicHeader("Authorization", "Token " + apiKey);
 		Request request = Request.Get(path).addHeader(header);
@@ -60,7 +60,11 @@ public class Client {
 				address.setPoBoxNumber(jo.getString("po_box_number"));
 				address.setBuildingName(jo.getString("building_name"));
 				address.setSubBuildingName(jo.getString("sub_building_name"));
-				address.setBuildingNumber(jo.getInt("building_number"));
+
+				try {
+					address.setBuildingNumber(jo.getInt("building_number"));
+				} catch (JSONException e) {}
+					
 				address.setDependentLocality(jo.getString("dependent_locality"));
 				address.setDoubleDependentLocality(jo.getString("double_dependent_locality"));
 				address.setPostTown(jo.getString("post_town"));
@@ -86,7 +90,7 @@ public class Client {
 	
 	private Postcode addGeneralInformation(Postcode postcode, String postcodeString) throws IOException {
 		
-		String path = endpoint + "/postcodes/" + postcodeString + "/";
+		String path = endpoint + "/postcodes/" + postcodeString.replaceAll("\\s+","") + "/";
 
 		Header header = new BasicHeader("Authorization", "Token " + apiKey);
 		Request request = Request.Get(path).addHeader(header);
@@ -98,17 +102,19 @@ public class Client {
 		JSONObject jsonPoint = jsonObject.getJSONObject("centre");
 		postcode.setCentrePoint(createPointFromJson(jsonPoint));
 		
-		JSONObject jsonLocalAuth = jsonObject.getJSONObject("local_authority");
-		LocalAuthority localAuthority = new LocalAuthority();
+		try {
+			JSONObject jsonLocalAuth = jsonObject.getJSONObject("local_authority");
+			LocalAuthority localAuthority = new LocalAuthority();
+			
+			localAuthority.setName(jsonLocalAuth.getString("name"));
+			localAuthority.setGssCode(jsonLocalAuth.getString("gss_code"));
+			
+			postcode.setLocalAuthority(localAuthority);
+		} catch (JSONException e) {}
 		
-		localAuthority.setName(jsonLocalAuth.getString("name"));
-		localAuthority.setGssCode(jsonLocalAuth.getString("gss_code"));
+			return postcode;
 		
-		postcode.setLocalAuthority(localAuthority);
-		
-		return postcode;
-		
-	}
+		}
 
 	private Point createPointFromJson(JSONObject jsonPoint) {
 		Point point = new Point();

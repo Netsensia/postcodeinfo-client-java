@@ -57,3 +57,8 @@ Quick Start
         point.getLatitude();
         point.getLongitude();
 	}	
+
+Tests
+-----
+
+To run the JUnit tests, first copy the test/config.props.dist file to test/config.props and add your API key.
