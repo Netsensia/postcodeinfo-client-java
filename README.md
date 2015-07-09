@@ -35,7 +35,7 @@ Quick Start
 		
 	LocalAuthority localAuth = pc.getLocalAuthority();
 	Point centrePoint = pc.getCentrePoint();
-	ArrayList<Address> addresses = pc.getAddress();
+	ArrayList<Address> addresses = pc.getAddresses();
 	
 	for (Address address : addresses) {
 		address.getUprn();
