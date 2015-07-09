@@ -4,7 +4,7 @@ Java API Client wrapper for [MoJ Postcode Info API](https://github.com/ministryo
 
 # Installation
 
-Add the JARs in the lib folder to your classpath.
+Add the JARs in the dist and lib folders to your classpath.
 
 # Usage
 

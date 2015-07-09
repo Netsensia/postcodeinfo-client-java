@@ -1,7 +1,6 @@
 package com.netsensia.postcodeinfo.client;
 
 import java.io.*;
-import java.util.ArrayList;
 
 import org.json.*;
 import org.apache.http.Header;
