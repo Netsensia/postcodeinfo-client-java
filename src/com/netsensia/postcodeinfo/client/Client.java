@@ -63,7 +63,7 @@ public class Client {
 
 				try {
 					address.setBuildingNumber(jo.getInt("building_number"));
-				} catch (JSONException e) {}
+				} catch (JSONException e) {	}
 					
 				address.setDependentLocality(jo.getString("dependent_locality"));
 				address.setDoubleDependentLocality(jo.getString("double_dependent_locality"));
@@ -110,11 +110,11 @@ public class Client {
 			localAuthority.setGssCode(jsonLocalAuth.getString("gss_code"));
 			
 			postcode.setLocalAuthority(localAuthority);
-		} catch (JSONException e) {}
+		} catch (JSONException e) { }
 		
-			return postcode;
+		return postcode;
 		
-		}
+	}
 
 	private Point createPointFromJson(JSONObject jsonPoint) {
 		Point point = new Point();
