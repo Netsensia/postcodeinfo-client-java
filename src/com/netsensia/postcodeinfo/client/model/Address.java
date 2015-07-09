@@ -14,7 +14,7 @@ public class Address {
     
     private String subBuildingName;
     
-    private int buildingNumber;
+    private int buildingNumber = -1;
     
     private String thoroughfareName;
     

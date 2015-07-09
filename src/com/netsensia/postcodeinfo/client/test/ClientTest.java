@@ -78,6 +78,12 @@ public class ClientTest {
     }
     
     @Test
+	public void test_get_the_local_authority_gss_code_when_no_local_auth_is_reported() throws IOException
+    {
+    	assertTrue(client.lookupPostcode("AB124YA").getLocalAuthority() == null);
+    }
+    
+    @Test
 	public void test_get_the_uprn() throws IOException
     {
         assertTrue(client.lookupPostcode("DL3 0UR").getAddresses().get(0).getUprn().equals("10013312514"));
@@ -118,6 +124,12 @@ public class ClientTest {
         assertTrue(client.lookupPostcode("BH6 5AL").getAddresses().get(5).getBuildingNumber() == 2);
     }
 
+    @Test
+	public void test_get_the_building_number_when_no_number_is_reported() throws IOException
+    {
+    	assertTrue(client.lookupPostcode("AB124YA").getAddresses().get(0).getBuildingNumber() == -1);
+    }
+    
     @Test
 	public void test_get_the_thoroughfare_name() throws IOException
     {
@@ -189,7 +201,5 @@ public class ClientTest {
         
         assertTrue(client.lookupPostcode("AB124YA").getAddresses().get(0).getPoint().getLongitude() == 57.06970637985032);
     }
-
-
 
 }
